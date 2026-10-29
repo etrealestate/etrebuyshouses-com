@@ -227,7 +227,7 @@
       gap: 8px;
     }
     .btn:hover { background: var(--brick-dark); }
-    .btn:focus-visible, .seo-trigger:focus-visible, .close:focus-visible, .faq summary:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+    .btn:focus-visible, .faq summary:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
     .btn.full { width: 100%; margin-top: 16px; }
     .form-note { margin: 9px 0 0; font-size: .75rem; color: var(--muted); text-align: center; }
     .section { width: min(1120px, calc(100% - 40px)); margin: 0 auto; padding: 92px 0; }
@@ -294,44 +294,6 @@
     footer { border-top: 1px solid var(--line); }
     .footer-inner { width: min(1120px, calc(100% - 40px)); margin: 0 auto; padding: 26px 0 34px; display: flex; justify-content: space-between; gap: 24px; color: var(--muted); font-size: .84rem; }
     .footer-inner a { text-underline-offset: 3px; }
-    .seo-trigger {
-      position: fixed;
-      right: max(18px, env(safe-area-inset-right));
-      bottom: max(18px, env(safe-area-inset-bottom));
-      z-index: 20;
-      border: 1px solid rgba(255,255,255,.25);
-      background: #17231d;
-      color: white;
-      border-radius: 999px;
-      box-shadow: 0 10px 35px rgba(0,0,0,.25);
-      font-weight: 800;
-      padding: 12px 17px;
-      cursor: pointer;
-    }
-    dialog {
-      width: min(940px, calc(100% - 28px));
-      max-height: min(840px, calc(100dvh - 28px));
-      border: 0;
-      padding: 0;
-      border-radius: var(--radius-md);
-      background: var(--surface);
-      color: var(--ink);
-      box-shadow: 0 30px 100px rgba(0,0,0,.35);
-    }
-    dialog::backdrop { background: rgba(7, 15, 11, .7); }
-    .seo-panel { padding: 34px; }
-    .seo-panel-head { display: flex; gap: 24px; justify-content: space-between; align-items: start; }
-    .seo-panel h2 { font-family: "Newsreader", serif; font-size: clamp(2.2rem, 5vw, 3.8rem); line-height: 1; margin: 0; }
-    .seo-panel-head p { margin: 10px 0 0; color: var(--muted); max-width: 650px; }
-    .close { border: 1px solid var(--line); color: var(--ink); background: var(--paper); width: 42px; height: 42px; border-radius: 50%; cursor: pointer; font-size: 1.35rem; flex: 0 0 auto; }
-    .seo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); margin-top: 28px; }
-    .seo-item { background: var(--surface); padding: 23px; }
-    .seo-item h3 { margin: 0 0 7px; font-size: 1rem; }
-    .seo-item p, .seo-item ul { margin: 0; color: var(--ink-soft); font-size: .91rem; }
-    .seo-item ul { padding-left: 19px; }
-    .seo-item code { display: block; margin-top: 10px; padding: 10px; background: var(--paper); border-radius: 5px; overflow-wrap: anywhere; color: var(--ink); }
-    .seo-status { display: inline-flex; align-items: center; gap: 7px; color: var(--forest-2); font-size: .78rem; font-weight: 800; margin-bottom: 8px; }
-    .seo-status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #2d9d61; }
     .mail-status { min-height: 22px; margin-top: 8px; font-size: .8rem; color: var(--brick-dark); }
     @media (max-width: 900px) {
       .hero { min-height: auto; }
@@ -378,9 +340,6 @@
       .faq-wrap { width: min(100% - 28px, 920px); padding: 68px 0; }
       .contact-band { width: min(100% - 28px, 1120px); padding: 68px 0; }
       .footer-inner { width: min(100% - 28px, 1120px); flex-direction: column; }
-      .seo-trigger { position: static; display: block; margin: 22px auto; font-size: .82rem; padding: 10px 14px; }
-      .seo-panel { padding: 24px 18px; }
-      .seo-grid { grid-template-columns: 1fr; }
     }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   </style>
@@ -769,67 +728,6 @@ src="https://www.facebook.com/tr?id=2138851106996280&ev=PageView&noscript=1"
     </div>
   </footer>
 
-  <button class="seo-trigger" id="seo-open" type="button" aria-haspopup="dialog">View SEO plan</button>
-  <dialog id="seo-dialog" aria-labelledby="seo-title">
-    <div class="seo-panel">
-      <div class="seo-panel-head">
-        <div>
-          <h2 id="seo-title">SEO &amp; launch plan</h2>
-          <p>The mockup includes the on-page foundation. These are the remaining items to carry into the live site and campaign landing pages.</p>
-        </div>
-        <button class="close" id="seo-close" type="button" aria-label="Close SEO plan">×</button>
-      </div>
-      <div class="seo-grid">
-        <article class="seo-item">
-          <span class="seo-status">Included in this mockup</span>
-          <h3>Search snippet</h3>
-          <p>One location-and-service focused title, a useful meta description, and a canonical URL.</p>
-          <code>Sell Your Fairview Heights, IL Property for Cash | ET Real Estate</code>
-        </article>
-        <article class="seo-item">
-          <span class="seo-status">Included in this mockup</span>
-          <h3>Page structure</h3>
-          <p>One descriptive H1, logical H2 sections, plain-language body copy, accessible FAQs, internal jump links, and descriptive image alt text.</p>
-        </article>
-        <article class="seo-item">
-          <span class="seo-status">Included in this mockup</span>
-          <h3>Local business schema</h3>
-          <p>JSON-LD identifies ET Real Estate, the phone and email, the Fairview Heights service area, and the verified site URL—without inventing an address or office hours.</p>
-        </article>
-        <article class="seo-item">
-          <h3>Before publishing</h3>
-          <ul>
-            <li>Set the form endpoint so submissions email ET Real Estate and create a CRM lead (the form falls back to email until the endpoint is set).</li>
-            <li>Compress final photos and test Core Web Vitals.</li>
-            <li>Submit the sitemap in Google Search Console.</li>
-            <li>Check robots.txt and canonical tags.</li>
-          </ul>
-        </article>
-        <article class="seo-item">
-          <h3>Local search</h3>
-          <ul>
-            <li>Fully complete the Google Business Profile.</li>
-            <li>Keep business name, phone, and service area consistent.</li>
-            <li>Ask real sellers for specific, honest reviews.</li>
-            <li>Link the profile to the most relevant page.</li>
-          </ul>
-        </article>
-        <article class="seo-item">
-          <h3>Pages worth building next</h3>
-          <p>Create substantial pages for houses, inherited property, rental property, duplexes, and multifamily buildings. Each page should answer a distinct seller question—not repeat thin city-swapped copy. Do the same for each town in the service area — Belleville, Collinsville, Fairview Heights, Swansea, O'Fallon, Waterloo, Millstadt, and Columbia — so a search for any of those towns lands on a page built for that town.</p>
-        </article>
-        <article class="seo-item">
-          <h3>Direct-mail landing pages</h3>
-          <p>Give each mailer a short destination such as <strong>/offer/belleville-a</strong>. Carry its campaign name in UTM tags, fire the Meta Pixel page view, and track the form completion as a Lead event.</p>
-        </article>
-        <article class="seo-item">
-          <h3>Measurement</h3>
-          <p>Track calls, email clicks, form starts, and completed leads. Use Google Search Console for search visibility and Meta Events Manager to verify Pixel events before spending on retargeting.</p>
-        </article>
-      </div>
-    </div>
-  </dialog>
-
   <script>
     (function () {
       var form = document.getElementById('offer-form');
@@ -890,18 +788,6 @@ src="https://www.facebook.com/tr?id=2138851106996280&ev=PageView&noscript=1"
         });
       });
 
-      var dialog = document.getElementById('seo-dialog');
-      document.getElementById('seo-open').addEventListener('click', function () {
-        dialog.showModal();
-      });
-      document.getElementById('seo-close').addEventListener('click', function () {
-        dialog.close();
-      });
-      dialog.addEventListener('click', function (event) {
-        var rect = dialog.getBoundingClientRect();
-        var outside = event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom;
-        if (outside) dialog.close();
-      });
     })();
   </script>
 </body>
