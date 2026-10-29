@@ -308,6 +308,9 @@
       .contact-actions { width: min(340px, 100%); }
     }
     @media (max-width: 680px) {
+      .utility-nav { flex-wrap: wrap; row-gap: 10px; }
+      .utility-nav > * { min-width: 0; }
+      .hero-inner > * { min-width: 0; }
       .hero-inner { width: min(100% - 28px, 1180px); padding-top: 20px; }
       .hero::after { background: rgba(8, 24, 18, .78); }
       .nav-links a:not(.nav-phone) { display: none; }
@@ -735,7 +738,7 @@ src="https://www.facebook.com/tr?id=2138851106996280&ev=PageView&noscript=1"
       // Set FORM_ENDPOINT at publish time to the intake endpoint that emails
       // ET Real Estate and creates the CRM lead. While it is empty, submissions
       // fall back to email, so no lead is ever lost.
-      var FORM_ENDPOINT = 'https://formsubmit.co/ajax/etrealestate.homes@gmail.com';
+      var FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxLrDYeZH6XnanGGQkXKafVjhDP1kOxPIYwQMaC9BLVD8zaDKOMG7F7CjI07jmvKEQf/exec';  // Google Apps Script intake (ET Real Estate Website Intake)
       // Set GOOGLE_ADS_CONVERSION_ID at publish time to the conversion action ID
       // from Google Ads (e.g. 'AW-123456789/AbC-D...'). While it is empty, no
       // conversion event fires, so nothing breaks before launch.
@@ -773,10 +776,13 @@ src="https://www.facebook.com/tr?id=2138851106996280&ev=PageView&noscript=1"
         status.textContent = 'Sending your details…';
         fetch(FORM_ENDPOINT, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },  // text/plain avoids the CORS preflight
           body: JSON.stringify(payload)
         }).then(function (res) {
           if (!res.ok) throw new Error('submit failed');
+          return res.json();
+        }).then(function (data) {
+          if (!data || data.result !== 'ok') throw new Error('submit failed');
           status.textContent = 'Thanks — your details are on their way. We\'ll be in touch.';
           form.reset();
           if (GOOGLE_ADS_CONVERSION_ID && typeof gtag === 'function') {

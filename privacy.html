@@ -298,6 +298,9 @@
       .contact-actions { width: min(340px, 100%); }
     }
     @media (max-width: 680px) {
+      .utility-nav { flex-wrap: wrap; row-gap: 10px; }
+      .utility-nav > * { min-width: 0; }
+      .hero-inner > * { min-width: 0; }
       .hero-inner { width: min(100% - 28px, 1180px); padding-top: 20px; }
       .hero::after { background: rgba(8, 24, 18, .78); }
       .nav-links a:not(.nav-phone) { display: none; }
